@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
-    titlt:String,
+    title:String,
     message:String,
     creator:String,
     tags:[String],
@@ -14,7 +14,7 @@ const postSchema = mongoose.Schema({
         type:Date,
         default:new Date()
     },
-})
+});
 
 const postMessage = mongoose.model('postMessage',postSchema);
 
