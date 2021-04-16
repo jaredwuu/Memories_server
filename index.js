@@ -7,8 +7,8 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 const app =express();
-
-dotenv.config({path:'./config/config.env'});
+//this line need to be changed for the directory of config.env
+dotenv.config({path:'config.env'});
 
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 
 app.use(cors());
 app.use('/posts',postRoutes);
+app.get('/',(req,res)=>{
+    res.send('<h1>Hello to Memories API');
+})
+
 
 //connect to mongoDB
 const PORT = process.env.PORT||5000;
