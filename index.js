@@ -8,7 +8,7 @@ import path from 'path';
 
 const app =express();
 //this line need to be changed for the directory of config.env
-dotenv.config({path:'config.env'});
+dotenv.config({path:'.env'});
 
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
