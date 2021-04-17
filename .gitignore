@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -23,3 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /config
+=======
+
+config.env
+>>>>>>> aac304d5422f335ca8a74252128636d3df0ce279
