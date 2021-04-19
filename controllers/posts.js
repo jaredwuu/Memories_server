@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import postMessage from '../models/postMessage.js';
+import PostMessage from '../models/postMessage.js';
 
 
 export const getPosts = async (req, res) => {
@@ -15,12 +15,12 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
     const post = req.body;
     // console.log(post);
-    const newPost = new PostMessage(post);
+    const newPostMessage = new PostMessage({...post,creator:req.userId,createdAt:new Date().toISOString()});
     try {
-        await newPost.save();
+        await newPostMessage.save();
 
 
-        res.status(201).json(newPost)
+        res.status(201).json(newPostMessage)
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
@@ -67,7 +67,7 @@ export const likePost = async (req, res) => {
         post.likes=post.likes.filter((id)=>id!==String(req.userId));
     }
 
-    const updatedPost = await postMessage.findByIdAndUpdate(id,{likeCount:post.likeCount+1},{new:true});
+    const updatedPost = await postMessage.findByIdAndUpdate(id,post,{new:true});
     res.json(updatedPost);
 }
 
