@@ -1,1 +1,5 @@
 npm install body-parser cors express mongoose nodemon
+
+add .env file 
+wirte :
+PORT=  MONGO_URI = 

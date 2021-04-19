@@ -4,11 +4,12 @@ import mongoose from 'mongoose'
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import dotenv from 'dotenv';
-import path from 'path';
+import userRoutes from './routes/users.js';
+
 
 const app =express();
 //this line need to be changed for the directory of config.env
-dotenv.config({path:'config.env'});
+dotenv.config({path:'.env'});
 
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
@@ -16,10 +17,11 @@ app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 
 app.use(cors());
 app.use('/posts',postRoutes);
+app.use('/user',userRoutes);
 app.get('/',(req,res)=>{
     res.send('<h1>Hello to Memories API<h1>');
 })
-
+ 
 
 //connect to mongoDB
 const PORT = process.env.PORT||5000;
