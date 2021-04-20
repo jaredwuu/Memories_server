@@ -21,7 +21,6 @@ app.use('/user',userRoutes);
 app.get('/',(req,res)=>{
     res.send('<h1>Hello to Memories API<h1>');
 })
- 
 
 //connect to mongoDB
 const PORT = process.env.PORT||5000;

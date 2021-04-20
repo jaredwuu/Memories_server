@@ -43,7 +43,7 @@ export const deletePost = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
 
     await PostMessage.findByIdAndRemove(id);
-    console.log('DELETE')
+
 
     res.json({ message: 'Post deleted successfully' });
 
@@ -56,7 +56,7 @@ export const likePost = async (req, res) => {
     if(!req.userId) return res.json({message:"Unauthorizaticated"});
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
-    const post = await postMessage.findById(id);
+    const post = await PostMessage.findById(id);
 
     const index = post.likes.findIndex((id)=>id===String(req.userId));
     if(index===-1) {
@@ -67,7 +67,7 @@ export const likePost = async (req, res) => {
         post.likes=post.likes.filter((id)=>id!==String(req.userId));
     }
 
-    const updatedPost = await postMessage.findByIdAndUpdate(id,post,{new:true});
+    const updatedPost = await PostMessage.findByIdAndUpdate(id,post,{new:true});
     res.json(updatedPost);
 }
 
